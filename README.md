@@ -8,3 +8,6 @@ Backend -> Firebase
 
 # The Website Link:
 https://shortcircuit-1.web.app/
+
+# The Admin Page
+https://shortcircuit-1.web.app/admin.html
