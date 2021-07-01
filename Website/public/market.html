@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market</title>
+    <link rel="icon" href="favicon.ico">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet"> 
+    <!-- <link rel="stylesheet" type="text/css" href="market.css"> -->
+    <style>
+      *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;      
+    }
+
+
+      img{
+        width: 100%;
+      }
+
+      body{
+        width: 100%;
+        height: 100vh;
+        background-color: #eee;
+        font-family: 'Audiowide', cursive;
+      }
+
+      h1{
+        margin-bottom: 2rem;
+        margin-top: 2rem;
+
+      }
+
+      #uploadComp{
+
+        background-color: blue;
+        border-radius: 0.8rem;
+
+      }
+
+      .card-post{
+        border-radius: 0.8rem;
+        box-shadow: 0 1.4rem 5rem rgba(0,0,0,.2);
+        background-color: white;
+        margin: 0 10rem 2rem 10rem;
+      }
+
+      .card-body{
+        padding-left: 30rem;
+      }
+
+      .card-img{
+        max-width: 20rem;
+        transform: translateX(-0.2rem);
+        padding-right: 2rem;
+        position: relative;
+        min-height: 100%;
+        border-radius: 0.8rem 0 0 0.8rem;
+
+
+
+      }
+
+      .row{
+        margin-left: 0;
+        margin-right: 0;
+      }
+
+/*      div.card img{
+
+        padding-left: 8rem;
+        object-fit: cover;
+        display: block;
+        height: 12rem;
+      }*/
+
+      .card-body{
+        padding: 10%;
+      }
+      .card-title{
+        margin: 0 0 1rem;
+        text-transform: uppercase;
+        font-weight: bold;
+        color: black;
+      }
+
+/*      .card-text{
+        margin-bottom: 1.8rem;
+
+      }*/
+
+      .card_money span{
+        display: block;
+        color: black;
+        font-weight: 400;
+        margin: .5rem 0;
+      }
+
+      .card_btn{
+        display: inline-block;
+        align-items: center;
+        padding: 0.5rem 0.5rem;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        font-weight: 200;
+        color: white;
+        background-color: #0275d8;
+        border-radius: .4rem;
+        text-decoration: none;
+      }
+
+      .card_btn:hover{
+        background-color:#3700b3;
+        text-decoration: none;
+        color: white;
+        cursor: pointer;
+      }
+
+      .pg-btn.center{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .pg-btn-load{
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem 1rem;
+        text-transform: uppercase;
+        text-decoration: none;
+        border-radius: 0.8rem;
+        background-color: #0275d8;
+        color: white;
+        margin-top: 2rem;
+
+      }
+
+      .pg-btn-load:hover{
+        text-decoration: none;
+        color: white;
+        background-color: #3700b3;
+        cursor: pointer;
+
+      }
+
+      a:not([href]):not([tabindex]){
+        color: white;
+        text-decoration: none;
+      }
+
+      .content{
+        display: none;
+      }
+
+      .noContent{
+        color: #000 !important;
+        background-color: transparent !important;
+        pointer-events: none;
+      }
+      
+
+    </style>
+
+</head>
+<body>
+    <!--for bootstrap-->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+<!-- For Loading more -->
+    <script>
+        $(document).ready(function(){
+          $(".content").slice(0, 10).show();
+          $("#loadMore").on('click', function(e){
+            e.preventDefault();
+            $(".content:hidden").slice(0, 10).slideDown();
+            if($(".content:hidden").length == 0){
+              $("#loadMore").text("No Content").addClass("noContent")
+            }
+          });
+        }); 
+    </script>
+
+    <!--firebase use-->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-functions.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        var firebaseConfig = {
+            apiKey: "AIzaSyAELQf2xWtHZmXh1nsWPfsGw4tAAVaW7_s",
+            authDomain: "shortcircuit-1.firebaseapp.com",
+            databaseURL: "https://shortcircuit-1-default-rtdb.firebaseio.com",
+            projectId: "shortcircuit-1",
+            storageBucket: "shortcircuit-1.appspot.com",
+            messagingSenderId: "798957424280",
+            appId: "1:798957424280:web:97839afea769af32044aed",
+            measurementId: "G-KP6V2B0Z3N"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+        var storage = firebase.storage();
+
+    </script>
+  
+    
+    <!--nav-->
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-primary">
+      <img src="navLogo.png" alt="" style="max-width: 2.5rem;">
+      <a class="navbar-brand" href="index.html">ShortCircuit</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+  
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="market.html">MarketPlace</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="profile.html">Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="signout.html">Sign Out</a>
+            </li>
+          </ul>
+        </div>
+    </nav>
+<div><h3 align="center">Products</h3> </div>
+<div id="marketplace_list" style="text-orientation: sideways-right;">
+    
+</div>
+<div class="info" style="">
+  <div class="info-title">
+    <h3 align="center">Sponsors</h3>
+  </div>
+  <div style="text-align: center; margin:1% 1% 1% 1%;">
+    <a href="https://www.ppsenergy.in"><img src="pps_home_logo.png" alt="Please Refresh" style="max-width: 30%; margin:1% 1% 1% 1%; padding:1% 1% 1% 1%; border: 3px solid #007bff; border-radius: 5px;"></a>
+    <a href="https://www.infigonfutures.com/#/"><img src="infigon_logo.jpeg" alt="Please Refresh" style="max-width: 30%; margin:1% 1% 1% 1%; padding:1% 1% 1% 1%; border: 3px solid #007bff; border-radius: 5px;"></a>
+    <a href="http://advancedcontrol.in/"><img src="ACE_logo.png" alt="Please Refresh" style="max-width: 30%; margin:1% 1% 1% 1%; padding:1% 1% 1% 1%; border: 3px solid #007bff; border-radius: 5px;"></a>
+  </div>
+</div>
+
+<div id="hide_box" style="visibility: hidden; position: fixed ; top: 0; bottom: 0; width: 100%; z-index: 2; background-color: black; opacity: 0.5; height: 0%;"></div>
+
+<script>
+  const buy = firebase.functions().httpsCallable('buy');
+  //checking for login
+  if(!(JSON.parse(localStorage.getItem('user')))){
+            window.location.replace("login.html");
+  }
+  var user = JSON.parse(localStorage.getItem('user'));
+  document.onload = refresh_fun();
+  document.onload = checkAuth();
+
+  var access_control = 1;
+
+  function refresh_fun() {
+    if(access_control){
+      access_control = 0;
+      document.getElementById('marketplace_list').innerHTML = "";
+      firebase.database().ref("marketplace/").once('value',(snapshot)=>{
+        snapshot.forEach((childSnapshot)=>{
+          //console.log(childSnapshot.val());
+          var data = {prodId: childSnapshot.val().trans_id,custId: user.uid};
+          var card = "<div class=\"card-post content\"><div class=\"row\"><div class=\"card-img\"><img src=\"inductors.jpg\" class=\"card-img\" alt=\"...\"></div><div><div class=\"card-body\"><h5 class=\"card-title\">" + childSnapshot.val().component.comp_name + "</h5><div class=\"card_money\"><span>$" + childSnapshot.val().price + "</span></div><p class=\"card-text\">Quantity:" + childSnapshot.val().component.comp_quan + "</p><p><a href=" + childSnapshot.val().component.file_link + ">File Link</a></p><button onclick=\"purchase( {prodId:'" + childSnapshot.val().trans_id + "',custId:'" + user.uid + "'})\" class=\"card_btn\">Buy</button></div></div></div></div\>";
+          let dom = new DOMParser().parseFromString(card,'text/html');
+          let card_element = dom.body.firstElementChild;
+          //console.log(card_element);
+          document.getElementById('marketplace_list').append(card_element);
+          card_element.style.display = 'block';
+        });
+      });
+      access_control = 1;
+    }
+    document.getElementById('hide_box').style.visibility="hidden";
+    document.getElementById('hide_box').style.height = "0%";
+  }
+
+  async function purchase(p) {
+    document.getElementById('hide_box').style.visibility="visible";
+    document.getElementById('hide_box').style.height = "100%";
+    var cash;
+    var prodprice;
+    firebase.database().ref("user_data/"+user.uid).once("value", (snap)=>{
+      cash = parseInt(snap.val().cash);
+    }).then(()=>{
+      firebase.database().ref("marketplace/"+p.prodId).once("value", (snap)=>{
+        prodprice = parseInt(snap.val().price);
+      }).then(()=>{
+      if(prodprice>cash){
+          window.alert("Error: Insufficient Funds");
+          refresh_fun();
+          return;
+        }
+        buy(p).then((a)=>{
+          console.log(a);
+          refresh_fun();
+        }).catch((err)=>{
+          console.log(err);
+        });
+      });
+    });
+  }
+
+    firebase.database().ref("marketplace/").on("child_changed",(data)=>{
+      //console.log(data);
+      document.getElementById('marketplace_list').innerHTML = "";
+      refresh_fun();
+    });
+  
+    firebase.database().ref("marketplace/").on("child_added",(data)=>{
+      //console.log(data);
+      document.getElementById('marketplace_list').innerHTML = "";
+      refresh_fun();
+    });
+
+    firebase.database().ref("marketplace/").on("child_removed",(data)=>{
+      //console.log(data);
+      document.getElementById('marketplace_list').innerHTML = "";
+      refresh_fun();
+    });
+
+  async function checkAuth() {
+    if(!user) {
+      window.location.replace("login.html");
+    }
+  }
+</script>
+
+  <div style="height: 50px;"></div>
+  <a href="https://oculus.spit.ac.in" style="text-decoration: none; color: blanchedalmond;">
+    <footer style="align-content: center; text-align: center; background-color: black; color: blanchedalmond; padding: 1% 0.33% 1% 0.33%; bottom: 0px; left: 0px; position: fixed; width: 100%; ">
+      An  <img src="Oculus Front.png" alt="Oculus" style="width: 80px;">  Event 
+    </footer>
+  </a>
+    <!-- <script type="text/javascript" src="main.js"></script> -->
+
+</body>
+</html>

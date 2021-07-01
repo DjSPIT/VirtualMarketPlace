@@ -1,0 +1,80 @@
+1 .	2N222
+2 . 2N3391A
+3 . 2N3904
+4 . 7 SEGMENT 
+5 . IC 74150N
+6 . IC 74151N
+7 . IC 74152AJ
+8 . IC 74154N
+9 . IC 74155N
+10 . BC546B
+11 . BC547B
+12 . Capacitor 0.1uF
+13 . Capacitor 0.5uF
+14 . Capacitor 100uF
+15 . Capacitor 10nF
+16 . Capacitor 10uF
+17 . Capacitor 220uF
+18 . DAC0808
+19 . Diode 1B4B42
+20 . Diode 1N4148
+21 . Diode 1N5817
+22 . Diode 1N750
+23 . Diode 1N914
+24 . Diode BZX84C10L
+25 . Diode BZX84C12L
+26 . Diode RB400D
+27 . DPDT
+28 . DPST
+29 . IC 1458
+30 . IC 1558
+31 . IC 3403
+32 . IC 4029
+33 . IC 4510
+34 . IC 4516
+35 . IC 555
+36 . IC 709
+37 . IC 7400
+38 . IC 7402
+39 . IC 7404
+40 . IC 7408
+41 . IC 741
+42 . IC 7411
+43 . IC 74151N
+44 . IC 74238
+45 . IC 7432
+46 . IC 744075
+47 . IC 747
+48 . IC 7486
+49 . IC 7490
+50 . IC 74LS138D
+51 . IC 74LS74D  
+52 . IC 7812
+53 . IC 7818
+54 . IC LM317
+55 . LCD 16x2
+56 . LCD 8x2
+57 . LED
+58 . Microcontroller AT8919C51
+59 . Numeric Keypad - 4X4
+60 . Numeric Keypad - 4X5
+61 . OPAMP
+62 . PIC16F737
+63 . PIC18F4520
+64 . Resistor 1 Ohm
+65 . Resistor 100 Ohm
+66 . Resistor 10k Ohm
+67 . Resistor 1k Ohm
+68 . Resistor 220 Ohm
+69 . Resistor 4.7k Ohm
+70 . Resistor 47 Ohm
+71 . Resistor 470 Ohm
+72 . Resistor 5.6 Ohm
+73 . Resistor 56 Ohm
+74 . Resistor 5k Ohm
+75 . Resistor 7.5k Ohm
+76 . Resistor 9.1 Ohm
+77 . Resistor 9.1K Ohm
+78 . Resistor 91 Ohm
+79 . SPDT
+80 . SPST

@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="icon" href="favicon.ico">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" >
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <style type="text/css">
+      *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+
+      nav, a{}
+
+       body{
+        height: 100vh;
+        background-color: #eee;
+        font-family: 'Audiowide', cursive;
+      }
+
+      h1{
+        margin-bottom: 2rem;
+        margin-top: 2rem;
+      }
+
+      span{
+        font-size: 2rem;
+      }
+
+      .card{
+        width: 18rem;
+        padding: 1% 1% 1% 1%; 
+        border:0;
+      }
+
+      .card-body{
+        text-align: center;
+      }
+
+      .card-img-top{
+        position: relative;
+
+      }
+
+      .card-text{
+        text-align: center;
+      }
+
+      div.card img{
+        object-fit: cover;
+        display: block;
+      }
+
+
+      .center{
+        margin: auto;
+      }
+
+      .card a{
+      }
+
+      .team-card{
+        display: flex;
+        justify-content: space-around;
+        box-shadow: 0 1.4rem 5rem rgba(0,0,0,.2);
+        border-radius: 1.5rem;
+
+      }
+
+      .team-table{
+        border-collapse: collapse;
+        width: 70%;
+        overflow: hidden;
+        border-radius: 1rem;
+
+      }
+
+      .team-table thead tr{
+        background-color: #0275d8;
+        color: white;
+        text-align: left;
+        font-weight: bold;
+        letter-spacing: 2px;
+      }
+
+      .team-table th,
+      .team-table td{
+        padding: 0.6rem 0.6rem;
+      }
+
+      .team-table tbody tr{}
+
+      .team-table tbody tr:nth-of-type(even){
+        background-color: #f3f3f3;
+      }
+
+
+
+      .content-table{
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 8rem;
+        border-radius: 0.8rem ;
+        overflow: hidden;
+
+      }
+
+      .width-50{
+        width: 50%;
+      }
+
+      .content-table thead tr{
+        background-color: #0275d8;
+        color: white;
+        text-align: left;
+        font-weight: bold;
+      }
+
+      .content-table th{
+        padding: 0.6rem 0.6rem;
+        width: 10%;
+      }
+      .content-table td{
+        padding: 0.6rem 0.6rem;
+
+      }
+
+      .content-table tbody tr{
+        border-bottom: 1px solid #dddddd;
+      }
+      .content-table tbody tr:nth-of-type(even){
+        background-color: #f3f3f3;
+      }
+
+      .content-table tbody tr:last-of-type{
+        border-bottom: 2px solid #0275d8;
+      }
+      
+      .btn-primary{
+      }
+
+      .btn-primary:hover{
+        background-color: #3700b3;
+        color: white;
+
+      }
+
+      .sale_bg{
+        width: 100%;
+        background-color: #eee;
+      }
+
+     @media (max-width: 768px) { 
+      div > .team-card{
+        width: 100%;
+      }
+
+     }
+
+    </style>
+
+</head>
+<body>
+    <!--for bootstrap-->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  
+    <!--firebase use-->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-functions.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        var firebaseConfig = {
+            apiKey: "AIzaSyAELQf2xWtHZmXh1nsWPfsGw4tAAVaW7_s",
+            authDomain: "shortcircuit-1.firebaseapp.com",
+            databaseURL: "https://shortcircuit-1-default-rtdb.firebaseio.com",
+            projectId: "shortcircuit-1",
+            storageBucket: "shortcircuit-1.appspot.com",
+            messagingSenderId: "798957424280",
+            appId: "1:798957424280:web:97839afea769af32044aed",
+            measurementId: "G-KP6V2B0Z3N"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+        var storage = firebase.storage();
+    </script>
+    
+    <!--nav-->
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-primary">
+      <img src="navLogo.png" alt="" style="max-width: 2.5rem;">
+      <a class="navbar-brand" href="index.html">ShortCircuit</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+  
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link " href="market.html">MarketPlace</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="profile.html">Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="signout.html">Sign Out</a>
+            </li>
+          </ul>
+        </div>
+    </nav>
+
+<div style="text-orientation: sideways-right;">
+
+  <div id="hide_box" style="visibility: hidden; position: fixed; top: 0; bottom: 0; width: 100%; z-index: 2; background-color: black; opacity: 0.5; height:0%;">
+
+  </div>
+<h3 id="team_name" align="center">Team Name</h4>
+<div class=" team-card width-50 p-3 mx-auto" style="background-color: #fff;">  
+  <table class="team-table">
+    <thead>
+      <tr>
+        <th style="width: 30%">Sr. No</th>
+        <th style="width: 50%">Participant Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1.</td>
+        <td id="name1">Alpha</td>
+      </tr>
+      <tr>
+        <td>2.</td>
+        <td id="name2">Beta</td>
+      </tr>
+      <tr>
+        <td>3.</td>
+        <td id="name3">Gamma</td>
+      </tr>
+    </tbody>
+  </table>
+
+    <div class="card">
+        <!-- <img class="card-img-top" src="coin.jpg" alt="Card image cap"> -->
+        <div class="card-body">
+          <h3 align="center" class="card-title">Balance</h3>
+          <p class="card-text" id="cash">$0</p>
+          <a href="market.html" class="btn btn-primary">Go to Market</a>
+        </div>
+    </div>
+</div>
+
+
+  <table class="content-table" id="cont-table">
+      <thead>
+        <tr>
+          <th>Item Name</th>
+          <th>Quantity</th>
+          <th>Price(per head)</th>
+          <th>Base Price</th>
+          <th>Max Sell Price</th>
+          <th>Datasheet</th>
+          <!-- <th>Sale Quantity</th> -->
+          <th>Sell</th>
+        </tr>
+      </thead>
+      <tbody style="font-family: 'Montserrat', sans-serif;" id="comp_data">
+        
+      </tbody>
+  </table> 
+</div>
+
+<div id="sale_container" style="position: absolute; top:33%; left: 33%; width:33%;border: black; border-style: solid; background-color: white; width: 33%; height: 33%; border-radius: 10px; visibility: hidden; border: black; text-align: center; z-index: 3;">
+  <table style="text-align: center; width: 100%; height: 80%;">
+    <tr>
+      <td>
+        Quantity:
+      </td>
+      <td>
+        <input type="number" name="sale_quantity" id="sale_quantity" autocomplete="off">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Total Price of Set:
+      </td>
+      <td>
+        <input type="number" name="price" id="sale_price" autocomplete="off">
+      </td>
+    </tr>
+  </table>
+  <button id="sale_button" onclick="make_sale()">Sell</button>
+  <button style="border-radius: 5px;" onclick="close_window();">Close</button>
+</div> 
+
+        
+
+
+  <script>
+    const sell = firebase.functions().httpsCallable('sell');
+    var component_id;
+    var storageRef = storage.ref();
+    if(!(JSON.parse(localStorage.getItem('user')))){
+      window.location.replace("login.html");
+    }
+    var user = JSON.parse(localStorage.getItem('user'));
+    var user_dataRef = firebase.database().ref("user_data/" + user.uid);
+    var data_refresh = 1;
+    user_dataRef.once('value', (snap)=>{
+      if(!snap.val()){
+        window.location.replace("newuser.html");
+      }
+    });
+    document.onload = refresh_page_data();
+    
+    async function refresh_page_data() {
+      if(!data_refresh){
+        return;
+      }
+      //for user_data values
+      try {
+        user_dataRef.on('value', (snapshot) =>{
+          //console.log(snapshot.val());
+          document.getElementById('team_name').innerHTML = snapshot.val().team_name;
+          document.getElementById('name1').innerHTML = snapshot.val().team_members.name1;
+          document.getElementById('name2').innerHTML = snapshot.val().team_members.name2;
+          document.getElementById('name3').innerHTML = snapshot.val().team_members.name3;
+          document.getElementById('cash').innerHTML = "$" + snapshot.val().cash;
+        });
+      } catch (err) {
+        window.alert(err);
+        if(err){
+          window.location.replace("newuser.html");
+        }
+      }
+
+      //for user component values
+      document.getElementById("comp_data").innerHTML = "";
+      try {
+        firebase.database().ref("user_data/" + user.uid + "/components").once('value', (snapshot) =>{
+          //console.log(snapshot.val());
+          snapshot.forEach((childSnapshot) => {
+            //console.log(childSnapshot.val());
+            var newRow = document.getElementById("comp_data").insertRow();
+            //console.log(childSnapshot.val().comp_minCost);
+            newRow.insertCell().innerText = childSnapshot.val().comp_name;
+            newRow.insertCell().innerHTML = childSnapshot.val().comp_quan;
+            newRow.insertCell().innerHTML = "$" + (childSnapshot.val().price/childSnapshot.val().comp_quan).toFixed(4);
+            newRow.insertCell().innerHTML = "$" + childSnapshot.val().comp_minCost;
+            newRow.insertCell().innerHTML = "$" + childSnapshot.val().comp_maxCost;
+            newRow.insertCell().innerHTML = "<a href ='" + childSnapshot.val().file_link + "'> Datasheet </a>";
+            //newRow.insertCell().innerHTML = "<input type='number' id='" + childSnapshot.val().comp_id + "' placeholder='Quantity to Sell'>";
+            newRow.insertCell().innerHTML = "<button style='border-radius:10px;' onclick='open_window(\"" + childSnapshot.val().comp_id + "\")'>Sell</button>"; 
+            //var childData = childSnapshot.val();
+          });
+        });
+      } catch (err) {
+        console.log(err);
+        window.alert(err);
+      }
+    }
+
+    //refresh page on change in data
+    firebase.database().ref("user_data/" + user.uid).on('child_changed', (snapshot) =>{
+        refresh_page_data();
+    });
+
+    function open_window(id){
+      component_id = id;
+      window.scrollTo(0,0);
+      document.getElementById('hide_box').style.zIndex=1;
+      document.getElementById('sale_container').style.visibility = 'visible';
+      //document.getElementById('sale_button').addEventListener = "make_sale(\"" + component_id +"\")";
+      document.getElementById('hide_box').style.visibility="visible";
+      document.getElementById('hide_box').style.height="1000%";
+    }
+    
+    function make_sale(){
+      
+      var send = {
+        itemId: component_id,
+        sellerId: user.uid,
+        quant:document.getElementById('sale_quantity').value,
+        price:document.getElementById('sale_price').value
+      }
+      //console.log(component_id);
+      //console.log(user.uid);
+      //console.log(document.getElementById('sale_quantity').value);
+      //console.log(document.getElementById('sale_price').value);
+      sell(send).then((r)=>{
+        console.log(r);
+        if(r.data){
+          window.alert(r.data);
+          close_window();
+        }
+        close_window();
+      });
+    }
+
+    function close_window(){
+      refresh_page_data();
+      document.getElementById('sale_container').style.visibility = 'hidden';
+      //document.getElementById('sale_button').addEventListener = "make_sale(\"" + component_id +"\")";
+      document.getElementById('hide_box').style.visibility="hidden";
+    }
+
+    function writeUserData(user) {
+        firebase.database().ref('/users/' + user.uid).set(user).catch(error => {
+          console.log(error.message)
+        });
+      }
+
+  </script>
+  </body>
+</html>

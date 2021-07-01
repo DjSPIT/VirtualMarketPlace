@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrator</title>
+    <link rel="icon" href="favicon.ico">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet"> 
+    <style>
+      body{
+        font-family: 'Audiowide', cursive;
+      }
+    </style>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <!--for bootstrap-->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  
+    <!--firebase use-->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-functions.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        var firebaseConfig = {
+            apiKey: "AIzaSyAELQf2xWtHZmXh1nsWPfsGw4tAAVaW7_s",
+            authDomain: "shortcircuit-1.firebaseapp.com",
+            databaseURL: "https://shortcircuit-1-default-rtdb.firebaseio.com",
+            projectId: "shortcircuit-1",
+            storageBucket: "shortcircuit-1.appspot.com",
+            messagingSenderId: "798957424280",
+            appId: "1:798957424280:web:97839afea769af32044aed",
+            measurementId: "G-KP6V2B0Z3N"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+        var storage = firebase.storage();
+
+    </script>
+
+    <!--nav-->
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-primary">
+        <img src="navLogo.png" alt="" style="max-width: 2.5rem;">
+      <a class="navbar-brand" href="index.html">ShortCircuit</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+  
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="market.html">MarketPlace</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="admin.html">Admin</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="transactions.html">Transactions</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="signout.html">Sign Out</a>
+            </li>
+          </ul>
+        </div>
+    </nav>
+    
+    <div>
+        <div class="tablet">
+            <h4>Add Component</h4>
+            <table>
+                <tr>
+                    <td>
+                        Component Name:
+                    </td>
+                    <td>
+                        <input type="text" id="comp_name" autocomplete="off" >
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Component Description:
+                    </td>
+                    <td>
+                        <input type="text" id="comp_desc" autocomplete="off" >
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Quantity:
+                    </td>
+                    <td>
+                        <input type="number" id="comp_quan" autocomplete="off" >
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Minimum Cost:
+                    </td>
+                    <td>
+                        <input type="number" id="comp_minCost" autocomplete="off" >
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Maximum Cost:
+                    </td>
+                    <td>
+                        <input type="number" id="comp_maxCost" autocomplete="off" >
+                    </td>
+                </tr>
+                <tr>    
+                    <td>
+                        Component File:
+                    </td>
+                    <td>
+                        <input type="file" id="comp_file" autocomplete="off" >
+                    </td>
+                </tr>
+                <tr >
+                    <td>
+                        <button class="func_buttons" onclick="add_component()">Add</button>
+                    </td>
+                </tr>
+                <tr style="text-align: center;" >
+                    <td><progress value="0" max="100" id="uploader" width="100%" ></progress></td>
+                </tr>
+            </table>
+        </div>
+        <div id="allotting" class="tablet" style="bottom: 5%;">
+            <h4>Allot Lots's</h4>
+            <table>
+                <tr>
+                    <td>
+                        Component:
+                    </td>
+                    <td>
+                        <input type="text" list="component_list" id="allot_comp_id1" autocomplete="off" >
+                    </td>
+                    <td>
+                        Quantity:
+                    </td>
+                    <td>
+                        <input type="number" id="allot_comp_quantity1" autocomplete="off" >
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Component:
+                    </td>
+                    <td>
+                        <input type="text" list="component_list" id="allot_comp_id2" autocomplete="off" >
+                    </td>
+                    <td>
+                        Quantity:
+                    </td>
+                    <td>
+                        <input type="number" id="allot_comp_quantity2" autocomplete="off" >
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Component:
+                    </td>
+                    <td>
+                        <input type="text" list="component_list" id="allot_comp_id3" autocomplete="off" >
+                    </td>
+                    <td>
+                        Quantity:
+                    </td>
+                    <td>
+                        <input type="number" id="allot_comp_quantity3" autocomplete="off" >
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Component:
+                    </td>
+                    <td>
+                        <input type="text" list="component_list" id="allot_comp_id4" autocomplete="off" >
+                    </td>
+                    <td>
+                        Quantity:
+                    </td>
+                    <td>
+                        <input type="number" id="allot_comp_quantity4" autocomplete="off" >
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Component:
+                    </td>
+                    <td>
+                        <input type="text" list="component_list" id="allot_comp_id5" autocomplete="off" >
+                    </td>
+                    <td>
+                        Quantity:
+                    </td>
+                    <td>
+                        <input type="number" id="allot_comp_quantity5" autocomplete="off" >
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Team to be alloted to:
+                    </td>
+                    <td>
+                        <input type="text" list="team_list" id="allot_team_id" autocomplete="off" >
+                    </td>
+                </tr>
+                <tr>    
+                    <td>
+                        Total Bid:
+                    </td>
+                    <td>
+                        <input type="number" id="allot_cost" autocomplete="off" >
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button class="func_buttons" onclick="checker()">Allot</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="tablet" id="assign_tablet" style="bottom: 5%;">
+            <h4>Assign Components</h4>
+            <table>
+                <tr>
+                    <td>
+                        Component Id:
+                    </td>
+                    <td>
+                        <input type="text" list="component_list" id="assign_comp_id" autocomplete="off" >
+                        <datalist id="component_list">
+                        </datalist>
+                    </td>
+                </tr>
+                <tr>    
+                    <td>
+                        Bid/Price:
+                    </td>
+                    <td>
+                        <input type="number" id="assign_cost" autocomplete="off" >
+                    </td>
+                </tr>
+                <tr>    
+                    <td>
+                        Quantity:
+                    </td>
+                    <td>
+                        <input type="number" id="assign_quantity" autocomplete="off" >
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Team Id:
+                    </td>
+                    <td>
+                        <input list="team_list" id="assign_teams_id" autocomplete="off">
+                            <datalist id="team_list">
+                            </datalist>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button class="func_buttons" onclick="check_money()">Assign</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="tablet" id="assign_money_tablet" style="bottom: 5%;">
+            <h4>Assign Money</h4>
+            <table>
+                <tr>
+                    <td>
+                        Team Id:
+                    </td>
+                    <td>
+                        <input list="team_list" id="set_money_teamId" autocomplete="off">
+                    </td>
+                </tr>
+                <tr>    
+                    <td>
+                        Cash:
+                    </td>
+                    <td>
+                        <input type="number" id="set_money_cash" autocomplete="off" >
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button class="func_buttons" onclick="set_money()">Assign</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <!-- <button onclick="reset_cash()">Reset Cash</button> -->
+        <button onclick="save_tree()">Download Tree</button>
+    </div>
+
+    <script>
+        var storageRef = storage.ref();
+        var tree;
+        //checking for login
+        if(!(JSON.parse(localStorage.getItem('user')))){
+            window.location.replace("login.html");
+        }
+        var user = JSON.parse(localStorage.getItem('user'));
+        var filebutton = document.getElementById("comp_file");
+        var uploader = document.getElementById("uploader");
+        var file;
+
+        filebutton.addEventListener('change', function(e) {
+            file = e.target.files[0];    
+            console.log(file);        
+        })
+
+        firebase.database().ref().on('value',(t)=>{
+            //console.log(tree);
+            localStorage.setItem('tree',JSON.stringify(t));
+        })
+
+        firebase.database().ref("user_data/").once('value', (snap)=>{
+            snap.forEach((child)=>{
+                var opt = document.createElement('option');
+                opt.appendChild(document.createTextNode(child.val().team_name));
+                opt.value = child.val().uid; 
+                document.getElementById('team_list').appendChild(opt); 
+            });
+        });
+
+        firebase.database().ref("ComponentList/").once('value', (snap)=>{
+            snap.forEach((child)=>{
+                var opt = document.createElement('option');
+                opt.appendChild(document.createTextNode(child.val().comp_name));
+                opt.value = child.val().comp_id; 
+                document.getElementById('component_list').appendChild(opt); 
+            });
+        });
+
+        async function add_component() {
+            var task = storage.ref('component_files/' + file.name).put(file);
+            
+            task.on( 'state_changed', 
+                function progress(snapshot) {
+                    var percentage = (snapshot.bytesTransferred/snapshot.totalBytes)*100;
+                    uploader.value = percentage;
+                },
+                function error(err) {
+                    window.alert(err);
+                },
+                function complete() {
+                    storageRef.child('component_files/' + file.name ).getDownloadURL().then(function(url) {
+                        console.log(url);
+                        var temp_ref = firebase.database().ref('ComponentList/').push()
+                        var key = temp_ref.key;
+                        temp_ref.set({
+                            comp_id: key,
+                            comp_name: document.getElementById('comp_name').value,
+                            description: document.getElementById('comp_desc').value,
+                            comp_quan: document.getElementById('comp_quan').value,
+                            comp_minCost: document.getElementById('comp_minCost').value,
+                            comp_maxCost: document.getElementById('comp_maxCost').value,
+                            file_link: url
+                        }).catch(error => {
+                            console.log(error.message)
+                        });
+                    });
+                    setTimeout(clear_fields_add,2000);
+                }
+            )
+        }
+
+        function clear_fields_add() {
+            document.getElementById('comp_name').value = '';
+            document.getElementById('comp_desc').value = '';
+            document.getElementById('comp_quan').value = '';
+            document.getElementById('comp_minCost').value = '';
+            document.getElementById('comp_maxCost').value = '';
+            uploader.value = 0;
+        }
+
+        function clear_fields_allot() {
+            document.getElementById('allot_comp_id1').value = '';
+            document.getElementById('allot_comp_id2').value = '';
+            document.getElementById('allot_comp_id3').value = '';
+            document.getElementById('allot_comp_quantity1').value = '';
+            document.getElementById('allot_comp_quantity2').value = '';
+            document.getElementById('allot_comp_quantity3').value = '';
+            document.getElementById('allot_comp_id4').value = '';
+            document.getElementById('allot_comp_quantity4').value = '';
+            document.getElementById('allot_comp_id5').value = '';
+            document.getElementById('allot_comp_quantity5').value = '';
+            document.getElementById('allot_team_id').value = '';
+            document.getElementById('allot_cost').value = '';
+        }
+
+        function checker() {
+            var money;
+            var teamId2 = document.getElementById('allot_team_id').value;
+            firebase.database().ref("user_data/" + teamId2).once("value",(snap)=>{
+                money = parseFloat(snap.val().cash)-parseFloat(document.getElementById('allot_cost').value);
+            }).then(()=>{
+                if(!(money<0)){
+                    //teamId1 = document.getElementById("allot_team_id").value;
+                    firebase.database().ref("/user_data/" + teamId2 + "/cash/").set(money).then(()=>{
+                        allot();
+                    });
+                }else {
+                    document.getElementById("allotting").style.backgroundColor = "#ff0000"
+                }
+                });
+        }
+
+        var mytkn;
+        async function allot() {
+            document.getElementById("allotting").style.backgroundColor = "#ff0000";
+            var compo1, compo2, compo3, compo4, compo5;
+            await firebase.database().ref("ComponentList/" + document.getElementById("allot_comp_id1").value).once('value').then((snapshot)=>{
+                compo1 = snapshot.val();
+                //console.log(comp_obj);
+            });
+            await firebase.database().ref("ComponentList/" + document.getElementById("allot_comp_id2").value).once('value').then((snapshot)=>{
+                compo2 = snapshot.val();
+                //console.log(comp_obj);
+            });
+            await firebase.database().ref("ComponentList/" + document.getElementById("allot_comp_id3").value).once('value').then((snapshot)=>{
+                compo3 = snapshot.val();
+                //console.log(comp_obj);
+            });
+            await firebase.database().ref("ComponentList/" + document.getElementById("allot_comp_id4").value).once('value').then((snapshot)=>{
+                compo4 = snapshot.val();
+                //console.log(comp_obj);
+            });
+            await firebase.database().ref("ComponentList/" + document.getElementById("allot_comp_id5").value).once('value').then((snapshot)=>{
+                compo5 = snapshot.val();
+                //console.log(comp_obj);
+            });
+
+            document.getElementById("assign_teams_id").value = document.getElementById('allot_team_id').value;
+
+            //component 1
+            document.getElementById('assign_cost').value = parseFloat(document.getElementById("allot_cost").value)*parseFloat((parseFloat(compo1.comp_minCost)*parseFloat(document.getElementById("allot_comp_quantity1").value))/(parseFloat(compo1.comp_minCost)*parseFloat(document.getElementById("allot_comp_quantity1").value)+parseFloat(compo2.comp_minCost)*parseFloat(document.getElementById("allot_comp_quantity2").value)+parseFloat(compo3.comp_minCost)*parseFloat(document.getElementById("allot_comp_quantity3").value)+parseFloat(compo4.comp_minCost)*parseFloat(document.getElementById("allot_comp_quantity4").value)+parseFloat(compo5.comp_minCost)*parseFloat(document.getElementById("allot_comp_quantity5").value)));
+            document.getElementById('assign_comp_id').value = compo1.comp_id;
+            document.getElementById("assign_quantity").value = document.getElementById("allot_comp_quantity1").value;
+            await assign1();
+            
+            //component 2
+            document.getElementById('assign_cost').value = parseFloat(document.getElementById("allot_cost").value)*parseFloat((parseFloat(compo2.comp_minCost)*parseFloat(document.getElementById("allot_comp_quantity2").value))/(parseFloat(compo1.comp_minCost)*parseFloat(document.getElementById("allot_comp_quantity1").value)+parseFloat(compo2.comp_minCost)*parseFloat(document.getElementById("allot_comp_quantity2").value)+parseFloat(compo3.comp_minCost)*parseFloat(document.getElementById("allot_comp_quantity3").value)+parseFloat(compo4.comp_minCost)*parseFloat(document.getElementById("allot_comp_quantity4").value)+parseFloat(compo5.comp_minCost)*parseFloat(document.getElementById("allot_comp_quantity5").value)));
+            document.getElementById('assign_comp_id').value = compo2.comp_id;
+            document.getElementById("assign_quantity").value = document.getElementById("allot_comp_quantity2").value;
+            await assign1();
+
+            //component 3
+            document.getElementById('assign_cost').value = parseFloat(document.getElementById("allot_cost").value)*parseFloat((parseFloat(compo3.comp_minCost)*parseFloat(document.getElementById("allot_comp_quantity3").value))/(parseFloat(compo1.comp_minCost)*parseFloat(document.getElementById("allot_comp_quantity1").value)+parseFloat(compo2.comp_minCost)*parseFloat(document.getElementById("allot_comp_quantity2").value)+parseFloat(compo3.comp_minCost)*parseFloat(document.getElementById("allot_comp_quantity3").value)));
+            document.getElementById('assign_comp_id').value = compo3.comp_id;
+            document.getElementById("assign_quantity").value = document.getElementById("allot_comp_quantity3").value;
+            await assign1();
+
+            //component 4
+            document.getElementById('assign_cost').value = parseFloat(document.getElementById("allot_cost").value)*parseFloat((parseFloat(compo4.comp_minCost)*parseFloat(document.getElementById("allot_comp_quantity4").value))/(parseFloat(compo1.comp_minCost)*parseFloat(document.getElementById("allot_comp_quantity1").value)+parseFloat(compo2.comp_minCost)*parseFloat(document.getElementById("allot_comp_quantity2").value)+parseFloat(compo3.comp_minCost)*parseFloat(document.getElementById("allot_comp_quantity3").value)+parseFloat(compo4.comp_minCost)*parseFloat(document.getElementById("allot_comp_quantity4").value)+parseFloat(compo5.comp_minCost)*parseFloat(document.getElementById("allot_comp_quantity5").value)));
+            document.getElementById('assign_comp_id').value = compo4.comp_id;
+            document.getElementById("assign_quantity").value = document.getElementById("allot_comp_quantity4").value;
+            await assign1();
+
+            //component 5
+            document.getElementById('assign_cost').value = parseFloat(document.getElementById("allot_cost").value)*parseFloat((parseFloat(compo5.comp_minCost)*parseFloat(document.getElementById("allot_comp_quantity5").value))/(parseFloat(compo1.comp_minCost)*parseFloat(document.getElementById("allot_comp_quantity1").value)+parseFloat(compo2.comp_minCost)*parseFloat(document.getElementById("allot_comp_quantity2").value)+parseFloat(compo3.comp_minCost)*parseFloat(document.getElementById("allot_comp_quantity3").value)+parseFloat(compo4.comp_minCost)*parseFloat(document.getElementById("allot_comp_quantity4").value)+parseFloat(compo5.comp_minCost)*parseFloat(document.getElementById("allot_comp_quantity5").value)));            
+            document.getElementById('assign_comp_id').value = compo5.comp_id;
+            document.getElementById("assign_quantity").value = document.getElementById("allot_comp_quantity5").value;
+            await assign1();
+
+            document.getElementById("allotting").style.backgroundColor = "#ffffff";
+            setTimeout(clear_fields_allot,2000);
+        }
+
+        
+        async function reset_cash() {
+            firebase.database().ref("user_data/").once("value", (snap)=>{ 
+                console.log(snap.val())
+                snap.forEach((cs)=>{
+                    console.log(cs.val());
+                    cs.val().cash = 0;
+                    firebase.database().ref("user_data/"+cs.val().uid).set(cs.val());
+                })
+            });
+        }
+        
+        async function set_money() {
+            document.getElementById("assign_money_tablet").style.backgroundColor = "#ff0000";
+            var set_money_teamId = document.getElementById("set_money_teamId").value;
+            var set_money_cash = document.getElementById("set_money_cash").value;
+            firebase.database().ref("user_data/"+set_money_teamId+"/cash/").set(parseFloat(set_money_cash)).then(()=>{
+                document.getElementById("set_money_teamId").value = "";
+                document.getElementById("set_money_cash").value = "";
+            })
+            document.getElementById("assign_money_tablet").style.backgroundColor = "#ffffff";
+        }
+
+        async function save_tree() {
+            tree = JSON.parse(localStorage.getItem('tree'));
+            const a = document.createElement("a");
+            const f = new Blob([localStorage.getItem('tree')], { type: "application/json" });
+            a.href = URL.createObjectURL(f);
+            a.download = "alldata.json";
+            a.click();
+        }
+
+        var money;
+        async function check_money() {
+            var teamId = document.getElementById('assign_teams_id').value;
+            await firebase.database().ref("user_data/" + teamId).once("value",(snap)=>{
+                money = parseFloat(snap.val().cash)-parseFloat(document.getElementById('assign_cost').value);
+            }).then((s)=>{
+                console.log(s);
+                document.getElementById('assign_tablet').style.backgroundColor = "pink";
+                if(!(money<0)){
+                    assign();
+                }
+            })
+        }
+
+        async function check_money1() {
+            var teamId = document.getElementById('assign_teams_id').value;
+            await firebase.database().ref("user_data/" + teamId1).once("value",(snap)=>{
+                money = parseFloat(snap.val().cash)-parseFloat(document.getElementById('assign_cost').value);
+            }).then(()=>{
+                document.getElementById('assign_tablet').style.backgroundColor = "pink";
+                if(!(money<0)){
+                    firebase.database().ref("user_data/"+teamId+"/cash").set(money).then(()=>{
+                        
+                    });
+                }
+            })
+        }
+
+        async function assign() {
+            var compId = document.getElementById('assign_comp_id').value;
+            var teamId = document.getElementById('assign_teams_id').value;
+            var thecost = document.getElementById('assign_cost').value;
+            var thequan = document.getElementById('assign_quantity').value;
+            document.getElementById('assign_tablet').style.backgroundColor = "#ff0000";
+            //console.log(teamId);
+            var comp_obj;
+            await firebase.database().ref("ComponentList/" + compId).once('value').then((snapshot)=>{
+                comp_obj = snapshot.val();
+                //console.log(comp_obj);
+            });
+            comp_obj.comp_quan = parseInt(comp_obj.comp_quan) - parseInt(document.getElementById('assign_quantity').value);
+            await firebase.database().ref("ComponentList/"+comp_obj.comp_id).set(comp_obj);
+            comp_obj.price = thecost;
+            comp_obj.comp_quan = thequan;
+            //console.log(comp_obj.comp_id);
+            firebase.database().ref("user_data/" + teamId + "/components").once('value',(snap)=>{
+                snap.forEach((cs)=>{
+                    if(cs.val().comp_id==comp_obj.comp_id){
+                        comp_obj.comp_quan= parseInt(comp_obj.comp_quan) + parseInt(cs.val().comp_quan);
+                        comp_obj.price = parseInt(cs.val().price) + parseInt(thecost);
+                    }
+                })
+            }).then(()=>{
+                firebase.database().ref("user_data/" + teamId + "/components/" + comp_obj.comp_id).set(comp_obj);
+                }).then(()=>{
+                    firebase.database().ref("user_data/"+ teamId +"/cash").set(money).then(()=>{
+                        //loggoing activity
+                        firebase.database().ref("admin_Activity").push({
+                            comp_id: compId,
+                            bid: thecost,
+                            quantity: thequan,
+                            team_id: teamId,
+                        });
+                    });
+                })
+            document.getElementById('assign_tablet').style.backgroundColor = "";
+            mytkn = 0;
+        }
+
+        async function assign1() {
+            var compId = document.getElementById('assign_comp_id').value;
+            var teamId = document.getElementById('assign_teams_id').value;
+            var thecost = document.getElementById('assign_cost').value;
+            var thequan = document.getElementById('assign_quantity').value;
+            document.getElementById('assign_tablet').style.backgroundColor = "#ff0000";
+            //console.log(teamId);
+            var comp_obj;
+            await firebase.database().ref("ComponentList/" + compId).once('value').then((snapshot)=>{
+                comp_obj = snapshot.val();
+                //console.log(comp_obj);
+            });
+            comp_obj.comp_quan = parseInt(comp_obj.comp_quan) - parseInt(document.getElementById('assign_quantity').value);
+            await firebase.database().ref("ComponentList/"+comp_obj.comp_id).set(comp_obj);
+            comp_obj.price = thecost;
+            comp_obj.comp_quan = thequan;
+            //console.log(comp_obj.comp_id);
+            firebase.database().ref("user_data/" + teamId + "/components").once('value',(snap)=>{
+                snap.forEach((cs)=>{
+                    if(cs.val().comp_id==comp_obj.comp_id){
+                        comp_obj.comp_quan= parseFloat(comp_obj.comp_quan) + parseFloat(cs.val().comp_quan);
+                        comp_obj.price = parseFloat(cs.val().price) + parseFloat(thecost);
+                    }
+                })
+            }).then(()=>{
+                firebase.database().ref("user_data/" + teamId + "/components/" + comp_obj.comp_id).set(comp_obj);
+                }).then(()=>{
+                        //loggoing activity
+                        firebase.database().ref("admin_Activity").push({
+                            comp_id: compId,
+                            bid: thecost,
+                            quantity: thequan,
+                            team_id: teamId,
+                        });
+                        //console.log("completed");
+                    });
+            document.getElementById('assign_tablet').style.backgroundColor = "";
+        }
+
+        document.onload = checkAuth();
+
+        function checkAuth() {
+            if(!user) {
+                window.location.replace("login.html");
+            }
+        }
+    </script>
+    <div style="height: 50px;"></div>
+    <a href="https://oculus.spit.ac.in" style="text-decoration: none; color: blanchedalmond;">
+        <footer style="align-content: center; text-align: center; background-color: black; color: blanchedalmond; padding: 1% 0.33% 1% 0.33%; bottom: 0px; left: 0px; position: fixed; width: 100%; ">
+          An  <img src="Oculus Front.png" alt="Oculus" style="width: 80px;">  Event 
+        </footer>
+      </a>
+</body>
+</html>

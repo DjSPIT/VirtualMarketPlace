@@ -1,0 +1,30 @@
+// exports.login_redirect = functions.database().ref("users")
+    // .onWrite((snapshot, context) => {
+      // Grab the current value of what was written to the Realtime Database.
+      // const original = snapshot.val();
+      // console.log(snapshot.val().uid);
+      // console.log('Uppercasing', context.params.pushId, original);
+      // const uppercase = original.toUpperCase();
+      // You must return a Promise when performing asynchronous tasks
+      // inside a Functions such as
+      // writing to the Firebase Realtime Database.
+      // Setting an "uppercase" sibling in the Realtime Database returns
+      // a Promise.
+      // return 0;
+    // });
+
+    //console.log("this is me");
+      //console.log(snap.val());
+      
+exports.sell = functions.https.onCall((item_id,seller_id,quant)=>{
+  db.
+});
+
+//const {defaultDatabase} = require("firebase-functions/lib/providers/firestore");
+
+const c = parseInt(item.price);
+        const d = parseInt(buyer.cash);
+        // const mssg = {status: "Error: Insufficient Funds"};
+        if (d<c) {
+          return "Error: Insufficient Funds";
+        }
