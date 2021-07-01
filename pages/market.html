@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet"> 
+    <!-- <link rel="stylesheet" type="text/css" href="market.css"> -->
+    <style>
+      *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;      
+    }
+
+
+      img{
+        width: 100%;
+      }
+
+      body{
+        width: 100%;
+        height: 100vh;
+        background-color: #eee;
+        font-family: 'Audiowide', cursive;
+      }
+
+      h1{
+        margin-bottom: 2rem;
+        margin-top: 2rem;
+
+      }
+
+      #uploadComp{
+
+        background-color: blue;
+        border-radius: 0.8rem;
+
+      }
+
+      .card-post{
+        padding: 2.5rem;
+        border-radius: 0.8rem;
+        box-shadow: 0 1.4rem 5rem rgba(0,0,0,.2);
+        background-color: white;
+        margin: 0 10rem 2rem 10rem;
+      }
+/*
+      .card-body{
+        padding-left: 0rem;
+      }*/
+
+      .card-img{
+        min-width: 20rem;
+        max-width: 20rem;
+        max-height: 10rem;
+        transform: translateX(-0.2rem);
+        padding-right: 2rem;
+        position: relative;
+
+      }
+
+/*      div.card img{
+
+        padding-left: 8rem;
+        object-fit: cover;
+        display: block;
+        height: 12rem;
+      }*/
+
+      .card-body{
+        padding: 0;
+      }
+      .card-title{
+        margin: 0 0 1rem;
+        text-transform: uppercase;
+        font-weight: bold;
+        color: black;
+      }
+
+/*      .card-text{
+        margin-bottom: 1.8rem;
+
+      }*/
+
+      .card_money span{
+        display: block;
+        color: black;
+        font-weight: 400;
+        margin: .5rem 0;
+      }
+
+      .card_btn{
+        display: inline-block;
+        align-items: center;
+        padding: 0.5rem 0.5rem;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        font-weight: 200;
+        color: white;
+        background-color: #0275d8;
+        border-radius: .4rem;
+        text-decoration: none;
+      }
+
+      .card_btn:hover{
+        background-color:#3700b3;
+        text-decoration: none;
+        color: white;
+        cursor: pointer;
+      }
+
+      .pg-btn.center{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .pg-btn-load{
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem 1rem;
+        text-transform: uppercase;
+        text-decoration: none;
+        border-radius: 0.8rem;
+        background-color: #0275d8;
+        color: white;
+        margin-top: 2rem;
+
+      }
+
+      .pg-btn-load:hover{
+        text-decoration: none;
+        color: white;
+        background-color: #3700b3;
+        cursor: pointer;
+
+      }
+
+      a:not([href]):not([tabindex]){
+        color: white;
+        text-decoration: none;
+      }
+
+      .content{
+        display: none;
+      }
+
+      .noContent{
+        color: #000 !important;
+        background-color: transparent !important;
+        pointer-events: none;
+      }
+      
+
+    </style>
+
+</head>
+<body>
+    <!--for bootstrap-->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+<!-- For Loading more -->
+    <script>
+        $(document).ready(function(){
+          $(".content").slice(0, 10).show();
+          $("#loadMore").on('click', function(e){
+            e.preventDefault();
+            $(".content:hidden").slice(0, 10).slideDown();
+            if($(".content:hidden").length == 0){
+              $("#loadMore").text("No Content").addClass("noContent")
+            }
+          });
+        }); 
+    </script>
+  
+    
+    <!--nav-->
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-primary">
+      <a class="navbar-brand" href="home.html">ShortCircuit</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+  
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="home.html">Home </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="market.html">MarketPlace</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="profile.html">Profile</a>
+            </li>
+            
+          </ul>
+        </div>
+    </nav>
+
+<div style="height: 5000px; text-orientation: sideways-right;">
+
+    <h3 align="center">Products</h3> 
+
+
+    <div class="card-post content">
+      <div class="row">
+        <div class="card-img">
+          <img src="inductors.jpg" class="card-img" alt="...">
+        </div>
+        <div>
+          <div class="card-body">
+            <h5 class="card-title">Inductor ~ 10mH</h5>
+            <div class="card_money">
+          		<span>$ 4.00</span>
+        	</div>
+            <a  class="card_btn" href="#">Buy</a>
+          </div>
+        </div>
+      </div> 
+    </div>
+
+    <div class="card-post content">
+      <div class="row">
+        <div class="card-img">
+          <img src="inductors.jpg" class="card-img" alt="...">
+        </div>
+        <div>
+          <div class="card-body">
+            <h5 class="card-title">Inductor ~ 10mH</h5>
+            <div class="card_money">
+          		<span>$ 4.00</span>
+        	</div>
+            <a  class="card_btn" href="#">Buy</a>
+          </div>
+        </div>
+      </div> 
+    </div>
+
+    <div class="card-post content">
+      <div class="row">
+        <div class="card-img">
+          <img src="inductors.jpg" class="card-img" alt="...">
+        </div>
+        <div>
+          <div class="card-body">
+            <h5 class="card-title">Inductor ~ 10mH</h5>
+            <div class="card_money">
+          		<span>$ 4.00</span>
+        	</div>
+            <a  class="card_btn" href="#">Buy</a>
+          </div>
+        </div>
+      </div> 
+    </div>
+
+
+    <div class="card-post content">
+      <div class="row">
+        <div class="card-img">
+          <img src="inductors.jpg" class="card-img" alt="...">
+        </div>
+        <div>
+          <div class="card-body">
+            <h5 class="card-title">Inductor ~ 10mH</h5>
+            <div class="card_money">
+          		<span>$ 4.00</span>
+        	</div>
+            <a  class="card_btn" href="#">Buy</a>
+          </div>
+        </div>
+      </div> 
+    </div>
+
+    <div class="card-post content">
+      <div class="row">
+        <div class="card-img">
+          <img src="resistor1k.jpg" class="card-img" alt="...">
+        </div>
+        <div>
+          <div class="card-body">
+            <h5 class="card-title">Inductor ~ 10mH</h5>
+            <div class="card_money">
+          		<span>$ 4.00</span>
+        	</div>
+            <a  class="card_btn" href="#">Buy</a>
+          </div>
+        </div>
+      </div> 
+    </div>
+
+    <div class="card-post content">
+      <div class="row">
+        <div class="card-img">
+          <img src="resistor2k.jpg" class="card-img" alt="...">
+        </div>
+        <div>
+          <div class="card-body">
+            <h5 class="card-title">Inductor ~ 10mH</h5>
+            <div class="card_money">
+          		<span>$ 4.00</span>
+        	</div>
+            <a  class="card_btn" href="#">Buy</a>
+          </div>
+        </div>
+      </div> 
+    </div>
+
+
+
+
+  <div class="pg-btn center">
+    <a  class="pg-btn-load" id="loadMore">Load More...</a>
+  </div>
+
+
+</div>
+
+
+  <footer style="align-content: center; text-align: center; background-color: black; color: blanchedalmond; padding: 1% 0.33% 1% 0.33%; bottom: 0px; left: 0px; position: fixed; width: 100%; ">
+      <a href="https://oculus.spit.ac.in" style="text-decoration: none; color: blanchedalmond;">An  <img src="Oculus.png" alt="Oculus" style="width: 80px;">  Event </a>
+    </footer>
+    <!-- <script type="text/javascript" src="main.js"></script> -->
+
+</body>
+</html>

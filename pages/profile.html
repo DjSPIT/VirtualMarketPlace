@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" >
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="font-awesome-4.7.0/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet"> 
+    <style type="text/css">
+      *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-size: 62.5%;
+      }
+
+
+      nav, a{
+        font-size: 2rem;
+      }
+
+       body{
+        height: 100vh;
+        background-color: #eee;
+        font-family: 'Audiowide', cursive;
+      }
+
+      h1{
+        margin-bottom: 2rem;
+        margin-top: 2rem;
+
+      }
+
+      span{
+        font-size: 2rem;
+      }
+
+      .card{
+        width: 18rem;   
+      }
+
+      .card-body{
+        font-size: 4rem;
+      }
+
+      .card-img-top{
+        margin-top: 2rem;
+        min-width: 22rem;
+        max-width: 22rem;
+        transform: translateX(-6rem);
+        position: relative;
+
+      }
+
+      .card-text{
+        font-size: 2rem;
+      }
+
+      div.card img{
+
+        padding-left: 8rem;
+        object-fit: cover;
+        display: block;
+        height: 12rem;
+      }
+
+
+      .center{
+        margin: auto;
+      }
+
+      .card a{
+        margin-left: 1.5rem;
+      }
+
+      .team-card{
+        display: flex;
+        justify-content: space-around;
+        box-shadow: 0 1.4rem 5rem rgba(0,0,0,.2);
+        border-radius: 1.5rem;
+
+      }
+
+      .team-table{
+        border-collapse: collapse;
+        width: 70%;
+        overflow: hidden;
+        border-radius: 1rem;
+
+      }
+
+      .team-table thead tr{
+        background-color: #0275d8;
+        color: white;
+        text-align: left;
+        font-size: 2rem;
+        font-weight: bold;
+      }
+
+      .team-table th,
+      .team-table td{
+        font-size: 2rem;
+        padding: 0.6rem 0.6rem;
+      }
+
+      .team-table tbody tr{
+        height: 10rem;
+      }
+      .team-table tbody tr:nth-of-type(even){
+        background-color: #f3f3f3;
+      }
+
+
+
+      .content-table{
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 8rem;
+        border-radius: 0.8rem ;
+        overflow: hidden;
+
+      }
+
+      .width-50{
+        width: 50%;
+      }
+
+      .content-table thead tr{
+        background-color: #0275d8;
+        color: white;
+        text-align: left;
+        font-size: 3rem;
+        font-weight: bold;
+      }
+
+      .content-table th{
+        font-size: 2rem;
+        padding: 0.6rem 0.6rem;
+        width: 10%;
+      }
+      .content-table td{
+        font-size: 2rem;
+        padding: 0.6rem 0.6rem;
+
+      }
+
+      .content-table tbody tr{
+        border-bottom: 1px solid #dddddd;
+      }
+
+      .content-table tbody tr:last-of-type{
+        border-bottom: 2px solid #0275d8;
+      }
+      
+      .btn-primary{
+        font-size: 1.5rem;
+
+      }
+
+      .btn-primary:hover{
+        background-color: #3700b3;
+        color: white;
+
+      }
+
+     @media (max-width: 768px) { 
+      div > .team-card{
+        width: 100%;
+      }
+
+     }
+
+    </style>
+
+</head>
+<body>
+    <!--for bootstrap-->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  
+    
+    <!--nav-->
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-primary">
+      <a class="navbar-brand" href="home.html">ShortCircuit</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+  
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="home.html">Home </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link " href="market.html">MarketPlace</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="profile.html">Profile</a>
+            </li>
+          </ul>
+        </div>
+    </nav>
+
+<div style="height: 5000px; text-orientation: sideways-right;">
+
+
+<h1 align="center">Green Beard</h1>
+<div class=" team-card width-50 p-3 mx-auto" style="background-color: #fff;">  
+  <table class="team-table">
+    <thead>
+      <tr>
+        <th style="width: 30%">Sr. No</th>
+        <th style="width: 50%">Participant Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1.</td>
+        <td>Aniket Nadkarni</td>
+      </tr>
+      <tr>
+        <td>2.</td>
+        <td>Sanskar Badjatia</td>
+      </tr>
+      <tr>
+        <td>3.</td>
+        <td>Dhananjay Joshi</td>
+      </tr>
+    </tbody>
+  </table>
+
+    <div class="card">
+        <img class="card-img-top" src="coin.jpg" alt="Card image cap">
+        <div class="card-body">
+          <h3 align="center" class="card-title">Money Left</h3>
+          <p class="card-text">$10,000.00</p>
+          <a href="market.html" class="btn btn-primary">Go to Market</a>
+        </div>
+    </div>
+</div>
+
+
+  <table class="content-table" id="cont-table">
+      <thead>
+        <tr>
+          <th>Item Name</th>
+          <th>Quantity</th>
+          <th>Price(per head)</th>
+          <th>Total Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Inductors 10mH</td>
+          <td> 5 </td>
+          <td> $12.00 </td>
+          <td> $60.00 </td>
+        </tr>
+        <tr>
+          <td>Resistors 1kΩ</td>
+          <td> 15 </td>
+          <td> $6.00 </td>
+          <td> $90.00 </td>
+        </tr>
+        <tr>
+          <td>Resistors 5kΩ</td>
+          <td> 10 </td>
+          <td> $8.00 </td>
+          <td> $80.00 </td>
+        </tr>
+        <tr>
+          <td>Capacitors 1μF</td>
+          <td> 2 </td>
+          <td> $10.00 </td>
+          <td> $20.00 </td>
+        </tr>
+        <tr>
+          <td>Capacitors 1μF</td>
+          <td> 2 </td>
+          <td> $10.00 </td>
+          <td> $20.00 </td>
+        </tr>
+        <tr>
+          <td>Capacitors 1μF</td>
+          <td> 2 </td>
+          <td> $10.00 </td>
+          <td> $20.00 </td>
+        </tr>
+        <tr>
+          <td>Capacitors 1μF</td>
+          <td> 2 </td>
+          <td> $10.00 </td>
+          <td> $20.00 </td>
+        </tr>
+        <tr>
+          <td>Capacitors 1μF</td>
+          <td> 2 </td>
+          <td> $10.00 </td>
+          <td> $20.00 </td>
+        </tr>
+        <tr>
+          <td>Capacitors 1μF</td>
+          <td> 2 </td>
+          <td> $10.00 </td>
+          <td> $20.00 </td>
+        </tr>
+        <tr>
+          <td>Capacitors 1μF</td>
+          <td> 2 </td>
+          <td> $10.00 </td>
+          <td> $20.00 </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td> $370.00 </td>
+        </tr>
+      </tbody>
+  </table> 
+
+</div>
+
+
+  
+    <footer style="align-content: center; text-align: center; background-color: black; color: blanchedalmond; padding: 1% 0.33% 1% 0.33%; bottom: 0px; left: 0px; position: fixed; width: 100%; ">
+      <a href="https://oculus.spit.ac.in" style="text-decoration: none; color: blanchedalmond;">An  <img src="Oculus.png" alt="Oculus" style="width: 80px;">  Event </a>
+    </footer>
+
+</body>
+</html>
