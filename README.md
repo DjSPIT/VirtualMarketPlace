@@ -4,6 +4,7 @@ This repository contains all the files of a website created for a software simul
 Tech stack used for creating the website
 
 Frontend-> HTML CSS JS
-
 Backend -> Firebase
 
+# The Website Link:
+https://shortcircuit-1.web.app/
