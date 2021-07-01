@@ -15,10 +15,6 @@ The Home page describes the event flow
 https://shortcircuit-1.web.app/
 
 # The Admin Page
-If you get redirected to the login page, just use these 
-
-Id : dhananjayadmin@sckt.com
-Password : djdjinthehouse
 
 https://shortcircuit-1.web.app/admin.html
 
