@@ -1,2 +1,0 @@
-1 OPAMP
-(any opamp available in your circuit simulation software can be used
